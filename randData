@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import sys
+from random import random
+
+if len(sys.argv) != 2:
+    print("Program takes one argument: ./randData num_random_points")
+    sys.exit()
+
+num_points = int(sys.argv[1])
+low = -10000
+high = 10000
+
+def trunc(num):
+    s = '{}'.format(num)
+    if 'e' in s or 'E' in s:
+        return '{0:.{1}f}'.format(num,7)
+    i, p, d = s.partition('.')
+    return '.'.join([i, (d+'0'*7)[:7]])
+
+def generateRand():
+    return trunc((low) + (high - low)*random())
+
+for i in range(num_points):
+    print(str(generateRand()) + " " + str(generateRand()))
+    
+sys.exit()
